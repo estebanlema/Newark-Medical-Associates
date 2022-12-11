@@ -1,0 +1,99 @@
+CREATE SCHEMA 'NMA';
+
+CREATE TABLE `NMA`.`Surgery_Nurse` (
+  `NurseID` INT NOT NULL AUTO_INCREMENT,
+  `Surgery_skills` VARCHAR(45) NULL,
+  `Grade` INT NULL,
+  `Salary` INT NULL,
+  `Year_Experience` VARCHAR(45) NULL,
+  `Nurse_Name` VARCHAR(45) NULL,
+  `No_of_Patients ` INT NULL,
+  PRIMARY KEY (`NurseID`));
+
+CREATE TABLE `assignment2`.`Surgeon` (
+  `SurgeonID` INT NOT NULL AUTO_INCREMENT,
+  `Surgeon_Name` VARCHAR(45) NULL,
+  `Contract_Info` VARCHAR(45) NULL,
+  `Surgery_Skill` VARCHAR(45) NULL,
+  `Specialty` VARCHAR(45) NULL);
+  `OwnerID` INT NULL,
+  PRIMARY KEY (`SurgeonID`));
+
+CREATE TABLE `NMA`.`Patient_Medical_Data` (
+  `Medical_Data_ID` INT NOT NULL AUTO_INCREMENT,
+  `Bloodtype` VARCHAR(45) NULL,
+  `Cholesterol` VARCHAR(45) NULL,
+  `Allergy_Code` VARCHAR(45) NULL,
+  `PatientID` INT NULL,
+  `Illness_Code` INT NULL 
+  `No_of_Illnesses` VARCHAR(45) NULL 
+  `Patient_Medical_Datacol` VARCHAR(45) NULL 
+  `No_of_Allergies` INT NULL 
+  PRIMARY KEY (`Medical_Data_ID`));
+
+CREATE TABLE `NMA`.`Location` (
+  `Room_No` INT NOT NULL,
+  `Nursing_Unit` VARCHAR(45) NULL,
+  `Bed` VARCHAR(45) NULL,
+  `PatientID` INT NULL,
+  `Data_of_Admission` VARCHAR(45) NULL,
+  PRIMARY KEY (`Room_No`));
+
+CREATE TABLE `NMA`.`Consultation` (
+  `Consultation_Type` VARCHAR(50) NOT NULL,
+  `PatientID` INT NULL,
+  `PhysicianID` INT NULL,
+  PRIMARY KEY (`Consultation_Type`)); 
+CREATE TABLE `NMA`.`Allergy` (
+  `Allergy_Code` INT NOT NULL,
+  `Allergy_Name` VARCHAR(45) NULL,
+  `Description` VARCHAR(45) NULL,
+  `PatientID` INT NULL,
+  PRIMARY KEY (`Allergy_Code`));
+
+CREATE TABLE `NMA`.`Surgery_Schedule` (
+  `idSurgery_Schedule` INT NOT NULL,
+  `Surgergy_Time` VARCHAR(45) NULL,
+  `Surgery_Date` VARCHAR(45) NULL,
+  `Surgeon_ID` INT NULL,
+  `NurseID` INT NULL,
+  PRIMARY KEY (`idSurgery_Schedule`));
+
+CREATE TABLE `NMA`.`Nurse_Qualification` (
+  `Specialty` VARCHAR(50) NOT NULL,
+  `Surgery_Skills` VARCHAR(45) NULL,
+  `NurseID` INT NULL,
+  PRIMARY KEY (`Specialty`));
+
+CREATE TABLE `NMA`.`Surgery_Skills` (
+  `Skill_Code` INT NOT NULL,
+  `SurgeonID` INT NULL,
+  `NurseID` INT NULL,
+  `Description` VARCHAR(45) NULL,
+  PRIMARY KEY (`Skill_Code`));
+
+CREATE TABLE `NMA`.`Clinic_Ownership` (
+  `OwnerID` INT NOT NULL,
+  `Corporation_Name` VARCHAR(45) NULL,
+  `Headquarters` VARCHAR(45) NULL,
+  `Percentage_Owned` INT NULL,
+  PRIMARY KEY (`OwnerID`));
+
+ 
+CREATE TABLE `NMA`.`Medication` (
+  `Medication_Code` INT NOT NULL AUTO_INCREMENT,
+  `Dosage` VARCHAR(45) NULL,
+  `YTD_Usage` VARCHAR(45) NULL,
+  `Medication_Name` VARCHAR(45) NULL,
+  `PhysicianID` INT NULL,
+  `PatientID` INT NULL,
+  `Quantity_On_Hand` INT NULL,
+  `Frequency` VARCHAR(45) NULL,
+  `Unit_Cost` INT NULL,
+  `Quantity_On_Order` INT NULL,
+  PRIMARY KEY (`Medication_Code`));
+  
+  
+
+
+
