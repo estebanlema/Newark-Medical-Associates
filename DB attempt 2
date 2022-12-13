@@ -1,0 +1,226 @@
+DROP SCHEMA IF EXISTS `NEWARK MEDICAL ASSOCIATES` ;
+
+-- -----------------------------------------------------
+-- Schema NEWARK MEDICAL ASSOCIATES
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `NEWARK MEDICAL ASSOCIATES` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `NEWARK MEDICAL ASSOCIATES` ;
+
+-- -----------------------------------------------------
+-- Table `NEWARK MEDICAL ASSOCIATES`.`Allergy`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `NEWARK MEDICAL ASSOCIATES`.`Allergy` (
+  `Allergy_Code` INT NOT NULL,
+  `Allergy_Name` VARCHAR(45) NULL DEFAULT NULL,
+  `Description` VARCHAR(45) NULL DEFAULT NULL,
+  `PatientID` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`Allergy_Code`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `NEWARK MEDICAL ASSOCIATES`.`Clinic_Ownership`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `NEWARK MEDICAL ASSOCIATES`.`Clinic_Ownership` (
+  `OwnerID` INT NOT NULL,
+  `Corporation_Name` VARCHAR(45) NULL DEFAULT NULL,
+  `Headquarters` VARCHAR(45) NULL DEFAULT NULL,
+  `Percentage_Owned` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`OwnerID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `NEWARK MEDICAL ASSOCIATES`.`Clinical_Personal`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `NEWARK MEDICAL ASSOCIATES`.`Clinical_Personal` (
+  `EmployeeID` INT NOT NULL,
+  `EmployeeName` VARCHAR(45) NULL DEFAULT NULL,
+  `EmployeeAddress` VARCHAR(45) NULL DEFAULT NULL,
+  `SSN` INT NULL DEFAULT NULL,
+  `Gender` VARCHAR(45) NULL DEFAULT NULL,
+  `Salary` INT NULL DEFAULT NULL,
+  `Telephone Number` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`EmployeeID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `NEWARK MEDICAL ASSOCIATES`.`Consultation`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `NEWARK MEDICAL ASSOCIATES`.`Consultation` (
+  `Consultation_Type` VARCHAR(50) NOT NULL,
+  `PatientID` INT NULL DEFAULT NULL,
+  `PhysicianID` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`Consultation_Type`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `NEWARK MEDICAL ASSOCIATES`.`Location`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `NEWARK MEDICAL ASSOCIATES`.`Location` (
+  `Room_No` INT NOT NULL,
+  `Nursing_Unit` VARCHAR(45) NULL DEFAULT NULL,
+  `Bed` VARCHAR(45) NULL DEFAULT NULL,
+  `PatientID` INT NULL DEFAULT NULL,
+  `Data_of_Admission` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`Room_No`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `NEWARK MEDICAL ASSOCIATES`.`Medication`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `NEWARK MEDICAL ASSOCIATES`.`Medication` (
+  `Medication_Code` INT NOT NULL AUTO_INCREMENT,
+  `Dosage` VARCHAR(45) NULL DEFAULT NULL,
+  `YTD_Usage` VARCHAR(45) NULL DEFAULT NULL,
+  `Medication_Name` VARCHAR(45) NULL DEFAULT NULL,
+  `PhysicianID` INT NULL DEFAULT NULL,
+  `PatientID` INT NULL DEFAULT NULL,
+  `Quantity_On_Hand` INT NULL DEFAULT NULL,
+  `Frequency` VARCHAR(45) NULL DEFAULT NULL,
+  `Unit_Cost` INT NULL DEFAULT NULL,
+  `Quantity_On_Order` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`Medication_Code`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `NEWARK MEDICAL ASSOCIATES`.`Nurse`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `NEWARK MEDICAL ASSOCIATES`.`Nurse` (
+  `NurseID` INT NOT NULL AUTO_INCREMENT,
+  `Surgery_skills` VARCHAR(45) NULL DEFAULT NULL,
+  `Grade` INT NULL DEFAULT NULL,
+  `Salary` INT NULL DEFAULT NULL,
+  `Year_Experience` VARCHAR(45) NULL DEFAULT NULL,
+  `Surgery_Nurse_Name` VARCHAR(45) NULL DEFAULT NULL,
+  `No_of_Patients` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`NurseID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `NEWARK MEDICAL ASSOCIATES`.`Nurse_Qualification`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `NEWARK MEDICAL ASSOCIATES`.`Nurse_Qualification` (
+  `Specialty` VARCHAR(50) NOT NULL,
+  `Surgery_Skills` VARCHAR(45) NULL DEFAULT NULL,
+  `NurseID` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`Specialty`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `NEWARK MEDICAL ASSOCIATES`.`Patient`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `NEWARK MEDICAL ASSOCIATES`.`Patient` (
+  `PatientID` INT NOT NULL,
+  `SSN` INT NULL DEFAULT NULL,
+  `Name` VARCHAR(45) NULL DEFAULT NULL,
+  `Gender` VARCHAR(45) NULL DEFAULT NULL,
+  `DOB` INT NULL DEFAULT NULL,
+  `Telephone_number` INT NULL DEFAULT NULL)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `NEWARK MEDICAL ASSOCIATES`.`Patient_Medical_Data`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `NEWARK MEDICAL ASSOCIATES`.`Patient_Medical_Data` (
+  `Medical_Data_ID` INT NOT NULL AUTO_INCREMENT,
+  `Bloodtype` VARCHAR(45) NULL DEFAULT NULL,
+  `Cholesterol` VARCHAR(45) NULL DEFAULT NULL,
+  `Allergy_Code` INT NULL DEFAULT NULL,
+  `PatientID` INT NULL DEFAULT NULL,
+  `Illness_Code` INT NULL DEFAULT NULL,
+  `No_of_Illnesses` INT NULL DEFAULT NULL,
+  `Patient_Medical_Datacol` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`Medical_Data_ID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `NEWARK MEDICAL ASSOCIATES`.`Primary_Care_Physician`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `NEWARK MEDICAL ASSOCIATES`.`Primary_Care_Physician` (
+  `PhysicianID` INT NOT NULL AUTO_INCREMENT,
+  `Specialty` VARCHAR(45) NULL DEFAULT NULL,
+  `Number_of_Patients` INT NOT NULL,
+  `Salary` INT NULL DEFAULT NULL,
+  `PatientID` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`PhysicianID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `NEWARK MEDICAL ASSOCIATES`.`Surgeon`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `NEWARK MEDICAL ASSOCIATES`.`Surgeon` (
+  `SurgeonID` INT NOT NULL AUTO_INCREMENT,
+  `Surgeon_Name` VARCHAR(45) NULL DEFAULT NULL,
+  `Surgery_Skill` VARCHAR(45) NULL DEFAULT NULL,
+  `Specialty` VARCHAR(45) NULL DEFAULT NULL,
+  `Contract_Info` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`SurgeonID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `NEWARK MEDICAL ASSOCIATES`.`Surgery_Schedule`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `NEWARK MEDICAL ASSOCIATES`.`Surgery_Schedule` (
+  `idSurgery_Schedule` INT NOT NULL,
+  `Surgergy_Time` VARCHAR(45) NULL DEFAULT NULL,
+  `Surgery_Date` VARCHAR(45) NULL DEFAULT NULL,
+  `Surgeon_ID` INT NULL DEFAULT NULL,
+  `NurseID` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`idSurgery_Schedule`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `NEWARK MEDICAL ASSOCIATES`.`Surgery_Skills`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `NEWARK MEDICAL ASSOCIATES`.`Surgery_Skills` (
+  `Skill_Code` INT NOT NULL,
+  `SurgeonID` INT NULL DEFAULT NULL,
+  `NurseID` INT NULL DEFAULT NULL,
+  `Description` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`Skill_Code`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
